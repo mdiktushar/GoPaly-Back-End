@@ -26,7 +26,16 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
+    // mongodb database service collection
+    const toysCollection = client.db(`GoPlay(Assignment11)`).collection(`toys`)
+
     // api
+    app.post(`/toy`, async(req, res) => {
+        const toy = req.body
+        // console.log(toy);
+        const result = await toysCollection.insertOne(toy)
+        res.send(result)
+    })
 
 
 
