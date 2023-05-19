@@ -1,9 +1,9 @@
+require("dotenv").config();
 const express = require("express");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const cors = require("cors");
 const app = express();
-const port = process.env.PORT || 5000;
-require("dotenv").config();
+const port = process.env.PORT;
 
 // middleware
 app.use(cors());
@@ -103,5 +103,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`car doctor server is running on port: ${port}`);
+  console.log(`GoPaly server is running on port: ${port}`);
 });
