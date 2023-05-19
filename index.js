@@ -65,7 +65,7 @@ async function run() {
 
     // update toys
 
-    app.patch("/toy/:id", async (req, res) => {
+    app.patch(`/toy/:id`, async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
       const updateToy = req.body;
@@ -76,6 +76,13 @@ async function run() {
         },
       };
       const result = await toysCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
+
+    app.delete(`/toy/:id`, async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await toysCollection.deleteOne(query);
       res.send(result);
     });
 
