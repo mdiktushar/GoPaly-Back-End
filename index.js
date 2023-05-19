@@ -29,7 +29,13 @@ async function run() {
     // mongodb database service collection
     const toysCollection = client.db(`GoPlay(Assignment11)`).collection(`toys`)
 
-    // api
+    // api.............................
+    // get operation all toys
+    app.get(`/toys`, async(req, res) => {
+        const result = await  toysCollection.find().toArray()
+        res.send(result)
+    })
+    // post operation one toy
     app.post(`/toy`, async(req, res) => {
         const toy = req.body
         // console.log(toy);
