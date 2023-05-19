@@ -35,6 +35,18 @@ async function run() {
       res.send(result);
     });
 
+    // get toys by user
+    app.get(`/my-toys`, async(req, res) => {
+        // console.log(req.query);
+        let query = {}
+        if(req.query?.email){
+          query = {email: req.query.email}
+        } 
+        const result = await toysCollection.find(query).toArray()
+        res.send(result)
+      })
+
+    // get toy by id
     app.get(`/toy/:id`, async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
