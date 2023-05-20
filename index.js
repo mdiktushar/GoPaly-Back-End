@@ -54,7 +54,7 @@ async function run() {
 
     // get toys by user
     app.get(`/my-toys`, async (req, res) => {
-      console.log(req.query);
+      // console.log(req.query);
       let query = {};
       if (req.query?.email) {
         query = { email: req.query.email };
