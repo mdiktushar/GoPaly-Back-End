@@ -72,7 +72,9 @@ async function run() {
 
       const updateDoc = {
         $set: {
-          status: updateToy.status,
+          price: updateToy.price,
+          quantity: updateToy.quantity,
+          details: updateToy.details
         },
       };
       const result = await toysCollection.updateOne(filter, updateDoc);
