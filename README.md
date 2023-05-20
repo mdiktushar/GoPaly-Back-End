@@ -1,6 +1,6 @@
 <h2>GoPlay</h2>
 
-Backend Server: 
+Backend Server: https://go-play-backend.vercel.app/
 <br/>
 Backend repository: https://github.com/programming-hero-web-course-4/b7a11-toy-marketplace-server-side-mdiktushar
 <br/>
