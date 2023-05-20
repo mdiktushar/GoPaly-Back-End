@@ -29,6 +29,17 @@ async function run() {
     const toysCollection = client.db(`GoPlay(Assignment11)`).collection(`toys`);
 
     // api.............................
+    // Section
+    app.get(`/category`, async (req, res) => {
+      // console.log(req.query);
+      let query = {};
+      if (req.query?.category) {
+        query = { category: req.query.category};
+      }
+      const result = await toysCollection.find(query).toArray();
+      res.send(result);
+    });
+
     // get operation all toys
     app.get(`/toys`, async (req, res) => {
       const result = await toysCollection.find().toArray();
