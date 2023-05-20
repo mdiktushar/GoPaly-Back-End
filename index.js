@@ -52,7 +52,8 @@ async function run() {
       res.send(result);
     });
 
-    // get toys by user
+    // get toys by user ....................
+    // normal
     app.get(`/my-toys`, async (req, res) => {
       // console.log(req.query);
       let query = {};
@@ -62,7 +63,34 @@ async function run() {
       const result = await toysCollection.find(query).toArray();
       res.send(result);
     });
+    // Ascending
+    app.get(`/my-toys/ascending`, async (req, res) => {
+      // console.log(req.query);
+      let query = {};
+      if (req.query?.email) {
+        query = { email: req.query.email };
+      }
+      const result = await toysCollection
+        .find(query)
+        .sort({ price: 1 })
+        .toArray();
+      res.send(result);
+    });
 
+    // Descending
+    app.get(`/my-toys/descending`, async (req, res) => {
+      // console.log(req.query);
+      let query = {};
+      if (req.query?.email) {
+        query = { email: req.query.email };
+      }
+      const result = await toysCollection
+        .find(query)
+        .sort({ price: -1 })
+        .toArray();
+      res.send(result);
+    });
+    // .........................
     // update toys
 
     app.patch(`/toy/:id`, async (req, res) => {
@@ -74,7 +102,7 @@ async function run() {
         $set: {
           price: updateToy.price,
           quantity: updateToy.quantity,
-          details: updateToy.details
+          details: updateToy.details,
         },
       };
       const result = await toysCollection.updateOne(filter, updateDoc);
